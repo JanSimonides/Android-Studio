@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">My App 6</string>
+    <string name="json">Get Json</string>
+    <string name="reset">Reset</string>
+    <string name="input">all</string>
+    <string name="names">Name</string>
+    <string name="room">Room</string>
+    <string name="price">Price</string>
+    <string name="currency"> €</string>
 </resources>

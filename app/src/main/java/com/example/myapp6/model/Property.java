@@ -14,16 +14,22 @@ public class Property {
     private  String propertyRoom;
     private float propertyPrice;
     private String propertyInDate;
-    private String ppropertyOutDate;
+    private String propertyOutDate;
     private State propertyState;
     private Type propertyType;
 
 
-    public String getPropertyName() {
-        return propertyName;
-    }
-
-    public void setPropertyName(String propertyName) {
-        this.propertyName = propertyName;
+    @Override
+    public String toString() {
+        return
+                      propertyId +
+                " " + propertyName +
+                " " + propertyRoom +
+                " " + propertyPrice +
+                " " + propertyInDate +
+                " " + propertyOutDate +
+                " " + propertyState.getDescription() +
+                " " + propertyType.getDescription()
+                ;
     }
 }
