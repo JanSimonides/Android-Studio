@@ -33,7 +33,7 @@
                 android:textStyle="bold"
                 />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/rowRoom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,13 +41,13 @@
                 android:text="@string/room"
                 android:layout_marginLeft="8dp"
                 android:textSize="14sp" />
-
+                 -->
             <TextView
                 android:id="@+id/rowPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/rowName"
+                android:layout_below="@id/rowName"
                 android:text="@string/price"
                 />
 

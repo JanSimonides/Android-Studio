@@ -20,12 +20,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerViewAdapter recyclerViewAdapter;
-    private ArrayList<Property> propertyList;
-
-
+    private  RecyclerViewAdapter recyclerViewAdapter;
+    private  ArrayList<Property> propertyList;
     String URL = "http://10.0.2.2:8080/";
-//   String URL = "https://api.myjson.com/bins/";
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    //vytvorenie requestu
+    JsonApi jsonApi = retrofit.create(JsonApi.class);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         propertyList = new ArrayList<>();
         recyclerView = findViewById(R.id.recycleView);
+        //nastavenie rovnakej vysky sirky ak sa prida/odstrani objekt
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -43,14 +50,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getJson(String point){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        Log.i("vypis",URL);
-        JsonApi jsonApi = retrofit.create(JsonApi.class);
-        //vytvorenie requestu
         Call<List<Property>> call = jsonApi.getAllPosts(point);
+
         //pre vytvorenie na novom threade na pozadi
         call.enqueue(new Callback<List<Property>>() {
             @Override
@@ -74,7 +75,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
