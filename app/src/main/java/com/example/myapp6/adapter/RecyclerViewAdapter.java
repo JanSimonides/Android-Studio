@@ -3,9 +3,7 @@ package com.example.myapp6.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -49,6 +47,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (property.getPropertyState().getCharState() == 'M'){
             holder.rowPrice.setTextColor(Color.RED);
         }
+        else{
+            holder.rowPrice.setTextColor(Color.BLACK);
+        }
     }
 
     @Override
@@ -83,13 +84,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             intent.putExtra("room", property.getPropertyRoom());
             intent.putExtra("state", property.getPropertyState().getDescription());
             intent.putExtra("type", property.getPropertyType().getDescription());
-            intent.putExtra("price", String.valueOf(property.getPropertyPrice()));
+            intent.putExtra("price", property.getPropertyPrice());
+            intent.putExtra("InDate",property.getPropertyInDate());
+            intent.putExtra("OutDate",property.getPropertyOutDate());
 
             context.startActivity(intent);
             notifyDataSetChanged();
-
-
-            Log.d("Click", "onClick: "+ property.getPropertyId());
         }
 
     }

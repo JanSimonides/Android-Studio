@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.example.myapp6.adapter.RecyclerViewAdapter;
 import com.example.myapp6.model.Property;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private  RecyclerViewAdapter recyclerViewAdapter;
     private  ArrayList<Property> propertyList;
     String URL = "http://10.0.2.2:8080/";
+    public static String point = "all";
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
@@ -43,13 +46,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerViewAdapter = new RecyclerViewAdapter(this,propertyList);
+        if (getIntent().hasExtra("deletedProperty")) {
+            String deletedName = getIntent().getExtras().getString("deletedProperty");
+            if (deletedName != null) {
+                Toast.makeText(getApplicationContext(), "Property: " + deletedName + " was successfully deleted", Toast.LENGTH_LONG).show();
+            }
+        }
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this,propertyList);
         recyclerView.setAdapter(recyclerViewAdapter);
-        getJson("all");
+
+        getAllProperties(point);
 
     }
 
-    public void getJson(String point){
+    public void getAllProperties(String point){
         Call<List<Property>> call = jsonApi.getAllPosts(point);
 
         //pre vytvorenie na novom threade na pozadi
@@ -61,12 +71,14 @@ public class MainActivity extends AppCompatActivity {
                     //textView.setText("Coda: "+response.code());
                     Log.i("Vypis","Code: "+response.code());
                 }
-               // textView.setText("");
+                else {
+                    // textView.setText("");
 
-                properties = response.body();
-                propertyList.addAll(properties);
+                    properties = response.body();
+                    propertyList.addAll(properties);
 
-                recyclerViewAdapter.notifyDataSetChanged();
+                    recyclerViewAdapter.notifyDataSetChanged();
+                }
             }
             @Override
             public void onFailure(Call<List<Property>> call, Throwable t) {
@@ -75,4 +87,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

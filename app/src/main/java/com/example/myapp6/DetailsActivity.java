@@ -3,22 +3,30 @@ package com.example.myapp6;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.View;;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+@Setter
+@Getter
 public class DetailsActivity extends AppCompatActivity {
-    private TextView detailsName, detailsRoom, detailsPrice,detailsState,detailsType;
-    private Button buttonDelete, buttonBack, save;
+    private TextView detailsName, detailsRoom, detailsPrice,detailsState,detailsType,detailsInDate,detailsOutDate;
+    private FloatingActionButton buttonDelete, save;
+
     String URL = "http://10.0.2.2:8080/";
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -40,36 +48,45 @@ public class DetailsActivity extends AppCompatActivity {
         detailsPrice = findViewById(R.id.detailsPrice);
         detailsState = findViewById(R.id.detailsState);
         detailsType = findViewById(R.id.detailsType);
+        detailsInDate = findViewById(R.id.detailsInDate);
+        detailsOutDate = findViewById(R.id.detailsOutDate);
 
         buttonDelete = findViewById(R.id.delete);
-        buttonBack = findViewById(R.id.back);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             detailsName.setText(bundle.getString("name"));
             detailsRoom.setText(bundle.getString("room"));
-            detailsPrice.setText(bundle.getString("price"));
+            detailsPrice.setText(String.valueOf(bundle.getFloat("price"))+" €");
             detailsType.setText(bundle.getString("type"));
             detailsState.setText(bundle.getString("state"));
+            detailsInDate.setText(bundle.getString("InDate"));
+            String propertyOutDate = bundle.getString("OutDate");
+
+            if (propertyOutDate != null) {
+                detailsOutDate.setText(propertyOutDate);
+            }
+            else {
+                detailsOutDate.setText("Not defined");
+            }
             id = bundle.getInt("id");
+
 
         }
 
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Code", "ID: " +id);
-                deleteProperty(id);
-                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(main);
-                finish();
-            }
-        });
-
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+            MyAlert deleteAlert = new MyAlert();
+            boolean answer = deleteAlert.getDialogValueBack(DetailsActivity.this,"Delete: "+detailsName.getText(),"Do yo want delete?");
+                if (answer) {
+                    deleteProperty(id);
+                    finish();
+                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                    main.putExtra("deletedProperty", detailsName.getText());
+                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(main);
+                }
             }
         });
     }
@@ -84,9 +101,10 @@ public class DetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.e( "onFailure: ",t.getMessage());
+                Log.e( "onFailure: ", Objects.requireNonNull(t.getMessage()));
 
             }
         });
     }
+
 }

@@ -7,4 +7,20 @@
     <string name="room">Room</string>
     <string name="price">Price</string>
     <string name="currency"> €</string>
+    <string name="show">Show</string>
+    <string name="pName">Property Name:</string>
+    <string name="pRoom">Property Room:</string>
+    <string name="pPrice">Property Price:</string>
+    <string name="pState">Property State:</string>
+    <string name="pType">Property Type:</string>
+    <string name="pInDate">Property In Date:</string>
+    <string name="pOutDate">Property Out Date:</string>
+
+    <string-array name="states">
+        <item>all</item>
+        <item>missing</item>
+        <item>removed</item>
+        <item>ok</item>
+        <item>moved</item>
+    </string-array>
 </resources>
