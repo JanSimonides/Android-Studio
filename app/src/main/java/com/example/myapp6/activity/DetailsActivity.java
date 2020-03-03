@@ -1,15 +1,16 @@
-package com.example.myapp6;
+package com.example.myapp6.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;;
 import android.widget.TextView;
 
+import com.example.myapp6.JsonApi;
+import com.example.myapp6.MyAlert;
+import com.example.myapp6.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
@@ -77,16 +78,21 @@ public class DetailsActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            MyAlert deleteAlert = new MyAlert();
-            boolean answer = deleteAlert.getDialogValueBack(DetailsActivity.this,"Delete: "+detailsName.getText(),"Do yo want delete?");
-                if (answer) {
+            MyAlert deleteAlert = new MyAlert(DetailsActivity.this, "Delete: " + detailsName.getText(), "Do yo want delete?") {
+                @Override
+                public void onClickPositiveBtn() {
                     deleteProperty(id);
                     finish();
                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                     main.putExtra("deletedProperty", detailsName.getText());
-                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    //main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(main);
                 }
+                @Override
+                public void onClickNegativeBtn() {
+                }
+            };
+            deleteAlert.show();
             }
         });
     }

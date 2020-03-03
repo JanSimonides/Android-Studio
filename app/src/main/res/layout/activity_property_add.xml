@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_id"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+        <RelativeLayout
+            android:background="@color/cardview_light_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+
+                android:layout_centerHorizontal="true"
+                android:text="@string/enter_property">
+            </TextView>
+
+            <EditText
+                android:id="@+id/propertyId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/property_id"
+                android:inputType="number"
+                android:layout_below="@id/title"/>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_name"
+                android:layout_below="@id/propertyId"/>
+
+            <EditText
+                android:id="@+id/room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_room"
+                android:layout_below="@id/name"/>
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_price"
+                android:inputType="numberDecimal"
+                android:layout_below="@id/room"/>
+
+            <EditText
+                android:id="@+id/inDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_inDate"
+                android:digits="0123456789-"
+                android:maxLength="8"
+                android:layout_below="@id/price"/>
+
+            <EditText
+                android:id="@+id/outDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_outDate"
+                android:digits="0123456789-"
+                android:maxLength="8"
+                android:layout_below="@id/inDate"/>
+
+            <EditText
+                android:id="@+id/charState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_char"
+                android:maxLength="1"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:layout_below="@id/outDate"/>
+
+            <EditText
+                android:id="@+id/intType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_innTpye"
+                android:maxLength="1"
+                android:inputType="number"
+                android:layout_below="@id/charState"/>
+
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_below="@id/intType"
+                android:textSize="14sp"
+                android:text="@string/save"
+                android:textStyle="bold"
+                android:enabled="false"
+                android:background="@color/colorPrimary"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

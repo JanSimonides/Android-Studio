@@ -15,6 +15,20 @@
     <string name="pType">Property Type:</string>
     <string name="pInDate">Property In Date:</string>
     <string name="pOutDate">Property Out Date:</string>
+    <string name="enter_item">Enter State</string>
+    <string name="hint_char">Enter one letter</string>
+    <string name="hint_description">Description</string>
+    <string name="save">Save</string>
+    <string name="hint_innTpye">Enter number</string>
+    <string name="enter_type">Enter Type</string>
+    <string name="enter_property">Enter Property</string>
+    <string name="hint_name">Enter Name</string>
+    <string name="hint_room">Enter room</string>
+    <string name="hint_price">Enter price</string>
+    <string name="hint_inDate">Enter date in format 20201123</string>
+    <string name="hint_outDate">Enter date in format 20201123</string>
+    <string name="property_id">Id</string>
+
 
     <string-array name="states">
         <item>all</item>
@@ -22,5 +36,11 @@
         <item>removed</item>
         <item>ok</item>
         <item>moved</item>
+    </string-array>
+
+    <string-array name="objects">
+        <item>property</item>
+        <item>state</item>
+        <item>type</item>
     </string-array>
 </resources>

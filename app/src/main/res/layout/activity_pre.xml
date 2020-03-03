@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/buttonStart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PreActivity">
+    tools:context=".activity.PreActivity"
+    android:orientation="vertical">
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="404dp"
-        android:layout_height="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/spinnerShow"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.25" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/iconlist"
+        android:backgroundTint="@color/colorPrimary">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <Spinner
+        android:id="@+id/spinnerAdd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/iconadd"
+        android:backgroundTint="@color/colorPrimary">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</LinearLayout>

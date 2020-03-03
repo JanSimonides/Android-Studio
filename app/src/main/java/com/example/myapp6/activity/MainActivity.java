@@ -1,4 +1,4 @@
-package com.example.myapp6;
+package com.example.myapp6.activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.myapp6.JsonApi;
+import com.example.myapp6.R;
 import com.example.myapp6.adapter.RecyclerViewAdapter;
-import com.example.myapp6.model.Property;
+import com.example.myapp6.model.entity.Property;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
         }
         recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this,propertyList);
         recyclerView.setAdapter(recyclerViewAdapter);
-
+        if (getIntent().hasExtra("select")){
+            point = getIntent().getExtras().getString("select");
+        }
         getAllProperties(point);
 
     }
 
-    public void getAllProperties(String point){
+    public void getAllProperties(final String point){
         Call<List<Property>> call = jsonApi.getAllPosts(point);
 
         //pre vytvorenie na novom threade na pozadi
@@ -68,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Property>> call, Response<List<Property>> response) {
                 List<Property> properties;
                 if (!response.isSuccessful()){
-                    //textView.setText("Coda: "+response.code());
-                    Log.i("Vypis","Code: "+response.code());
+                    Log.i("Vypis","Code: "+response.code() + point);
                 }
                 else {
                     // textView.setText("");

@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapp6.DetailsActivity;
+import com.example.myapp6.activity.DetailsActivity;
 import com.example.myapp6.R;
-import com.example.myapp6.model.Property;
+import com.example.myapp6.model.entity.Property;
 
 import java.util.List;
 
@@ -88,6 +89,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             intent.putExtra("InDate",property.getPropertyInDate());
             intent.putExtra("OutDate",property.getPropertyOutDate());
 
+            if(context instanceof AppCompatActivity){
+                ((AppCompatActivity)context).finish();
+            }
             context.startActivity(intent);
             notifyDataSetChanged();
         }
