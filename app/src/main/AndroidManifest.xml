@@ -12,13 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".activity.RegistrationActivity"></activity>
+        <activity android:name=".activity.PreActivity" />
         <activity android:name=".activity.add.TypeAddActivity" />
         <activity android:name=".activity.add.PropertyAddActivity" />
         <activity android:name=".activity.add.StateAddActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.PreActivity">
+        <activity android:name=".activity.RegAndLogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

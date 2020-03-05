@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_id"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+        <RelativeLayout
+            android:background="@color/cardview_light_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+
+                android:layout_centerHorizontal="true"
+                android:text="@string/title_activity_login">
+            </TextView>
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_username"
+                android:layout_below="@id/title"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:layout_below="@id/username">
+                <requestFocus/>
+            </EditText>
+
+            <Button
+                android:id="@+id/logButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_below="@id/password"
+                android:textSize="14sp"
+                android:text="@string/title_activity_login"
+                android:enabled="false"
+                android:textStyle="bold"
+                android:background="@color/colorPrimary"/>
+
+            <Button
+                android:id="@+id/regButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="15sp"
+                android:layout_below="@id/logButton"
+                android:textSize="14sp"
+                android:text="@string/registration"
+                android:textStyle="bold"
+                android:background="@color/colorPrimary"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

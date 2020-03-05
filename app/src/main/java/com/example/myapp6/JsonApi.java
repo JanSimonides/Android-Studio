@@ -1,9 +1,12 @@
 package com.example.myapp6;
 
 import com.example.myapp6.model.PropertyDTO;
+import com.example.myapp6.model.User;
 import com.example.myapp6.model.entity.Property;
 import com.example.myapp6.model.entity.State;
 import com.example.myapp6.model.entity.Type;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ public interface JsonApi {
 
     @GET
     Call<List<Property>> getAllPosts(@Url String url);
+
     @DELETE("delete/{id}/")
     Call<Void> deleteProperty(@Path("id")int id);
 
@@ -34,4 +38,11 @@ public interface JsonApi {
 
     @POST("saveProperty")
     Call<Void> saveProperty(@Body PropertyDTO propertyDTO);
+
+    @POST ("logintest")
+    Call<Void> login(@Body User user);
+
+    @POST("createUser")
+    Call<Void> createUser (@Body User user);
+
 }
