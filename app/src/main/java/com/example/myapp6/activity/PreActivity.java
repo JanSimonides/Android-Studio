@@ -19,16 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class PreActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private FloatingActionButton buttonShow;
     private FloatingActionButton buttonAdd;
-    private String select;
+    private String selectShow;
+    private String selectAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre);
         buttonShow = findViewById(R.id.buttonShow);
         buttonAdd = findViewById(R.id.buttonAdd);
-
-        buttonShow.setEnabled(false);
-        buttonAdd.setEnabled(false);
 
         Spinner spinnerShow = findViewById(R.id.spinnerShow);
         ArrayAdapter<CharSequence> adapterShow = ArrayAdapter.createFromResource(this,R.array.states,android.R.layout.simple_spinner_item);
@@ -47,7 +45,7 @@ public class PreActivity extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onClick(View v) {
                 Intent intentShow = new Intent(PreActivity.this,MainActivity.class);
-                intentShow.putExtra("select",select);
+                intentShow.putExtra("select",selectShow);
                 startActivity(intentShow);
             }
         });
@@ -56,13 +54,13 @@ public class PreActivity extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onClick(View v) {
                 Intent intentAdd = new Intent();
-                if (select.equals("property")){
+                if (selectAdd.equals("property")){
                  intentAdd = new Intent(PreActivity.this, PropertyAddActivity.class);
                 }
-                if (select.equals("state")){
+                if (selectAdd.equals("state")){
                  intentAdd = new Intent(PreActivity.this, StateAddActivity.class);
                 }
-                if (select.equals("type")){
+                if (selectAdd.equals("type")){
                  intentAdd = new Intent(PreActivity.this, TypeAddActivity.class);
                 }
                 startActivity(intentAdd);
@@ -73,19 +71,18 @@ public class PreActivity extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.spinnerAdd){
-            buttonAdd.setEnabled(true);
-            buttonShow.setEnabled(false);
+            selectAdd = parent.getItemAtPosition(position).toString();
+            Toast.makeText(parent.getContext(),selectAdd,Toast.LENGTH_SHORT).show();
         }
         if (parent.getId() == R.id.spinnerShow){
-            buttonShow.setEnabled(true);
-            buttonAdd.setEnabled(false);
+            selectShow = parent.getItemAtPosition(position).toString();
+            Toast.makeText(parent.getContext(),selectShow,Toast.LENGTH_SHORT).show();
         }
-        select = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),select,Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
 }

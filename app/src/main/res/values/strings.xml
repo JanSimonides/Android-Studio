@@ -31,10 +31,10 @@
 
 
     <string-array name="states">
-        <item>all</item>
+        <item>ok</item>
         <item>missing</item>
         <item>removed</item>
-        <item>ok</item>
+        <item>all</item>
         <item>moved</item>
     </string-array>
 

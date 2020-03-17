@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private  RecyclerViewAdapter recyclerViewAdapter;
     private  ArrayList<Property> propertyList;
-    String URL = "http://10.0.2.2:8080/";
+
+    //String URL = "http://10.0.2.2:8080/";
+    String URL = "http://192.168.1.10:8080/";
     public static String point = "all";
 
     Retrofit retrofit = new Retrofit.Builder()

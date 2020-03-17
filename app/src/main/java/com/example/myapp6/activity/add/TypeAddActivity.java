@@ -25,7 +25,8 @@ public class TypeAddActivity extends AppCompatActivity {
     private EditText intType;
     private EditText description;
 
-    String URL = "http://10.0.2.2:8080/";
+    //String URL = "http://10.0.2.2:8080/";
+    String URL = "http://192.168.1.10:8080/";
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -63,7 +64,7 @@ public class TypeAddActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Type not saved",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Type not saved"+t,Toast.LENGTH_LONG).show();
                     }
                 });
                 finish();

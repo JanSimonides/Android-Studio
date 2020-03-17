@@ -89,9 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             intent.putExtra("InDate",property.getPropertyInDate());
             intent.putExtra("OutDate",property.getPropertyOutDate());
 
-            if(context instanceof AppCompatActivity){
-                ((AppCompatActivity)context).finish();
-            }
+
             context.startActivity(intent);
             notifyDataSetChanged();
         }

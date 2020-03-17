@@ -28,7 +28,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView detailsName, detailsRoom, detailsPrice,detailsState,detailsType,detailsInDate,detailsOutDate;
     private FloatingActionButton buttonDelete, save;
 
-    String URL = "http://10.0.2.2:8080/";
+    //String URL = "http://10.0.2.2:8080/";
+    String URL = "http://192.168.1.10:8080/";
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
@@ -85,7 +86,7 @@ public class DetailsActivity extends AppCompatActivity {
                     finish();
                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                     main.putExtra("deletedProperty", detailsName.getText());
-                    //main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(main);
                 }
                 @Override
