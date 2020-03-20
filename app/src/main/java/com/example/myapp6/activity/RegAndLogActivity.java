@@ -17,6 +17,11 @@ import com.example.myapp6.R;
 import com.example.myapp6.model.User;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +69,19 @@ public class RegAndLogActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (!response.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Code" +response.code(),Toast.LENGTH_LONG).show();
+                            JSONObject responseObject = null;
+                            try {
+                                responseObject = new JSONObject(response.errorBody().string());
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
+                            String message = null;
+                            try {
+                                message = responseObject.getString("message");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
                             return;
                         }
                         Toast.makeText(getApplicationContext(), "Successful",Toast.LENGTH_LONG).show();
@@ -98,12 +115,29 @@ public class RegAndLogActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            login.setEnabled(!username.getText().toString().isEmpty() &&password.getText().toString().trim().length() >1);
+            login.setEnabled(isPasswordValid(password.getText().toString()) && isUsernameValid(username.getText().toString()));
+
+            if (!isPasswordValid(password.getText().toString())){
+                password.setError("Password must be at least 6 characters Length");
+            }
+
+            if (!isUsernameValid(username.getText().toString())){
+                username.setError("Username must be at least 3 characters Length");
+            }
         }
+
 
         @Override
         public void afterTextChanged(Editable s) {
 
         }
     };
+
+    private boolean isPasswordValid (String password) {
+        return password != null && password.trim().length() > 5;
+    }
+
+    private boolean isUsernameValid (String username){
+        return username != null && username.trim().length() > 2;
+    }
 }

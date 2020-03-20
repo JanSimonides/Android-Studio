@@ -25,19 +25,11 @@
             </TextView>
 
             <EditText
-                android:id="@+id/propertyId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/property_id"
-                android:inputType="number"
-                android:layout_below="@id/title"/>
-
-            <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_name"
-                android:layout_below="@id/propertyId"/>
+                android:layout_below="@id/title"/>
 
             <EditText
                 android:id="@+id/room"
@@ -59,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_inDate"
-                android:digits="0123456789-"
+                android:inputType="number"
                 android:maxLength="8"
                 android:layout_below="@id/price"/>
 
@@ -68,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_outDate"
-                android:digits="0123456789-"
+                android:inputType="number"
                 android:maxLength="8"
                 android:layout_below="@id/inDate"/>
 

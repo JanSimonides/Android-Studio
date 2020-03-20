@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_username"
+                android:inputType="textPersonName"
                 android:layout_below="@id/title"/>
 
             <EditText
@@ -37,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
+                android:selectAllOnFocus="true"
                 android:layout_below="@id/username"/>
 
             <EditText
@@ -44,15 +46,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:selectAllOnFocus="true"
                 android:hint="@string/hint_password"
                 android:layout_below="@id/email"/>
+
+            <EditText
+                android:id="@+id/controlPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:selectAllOnFocus="true"
+                android:hint="@string/hint_controlPassword"
+                android:layout_below="@id/password"/>
 
             <Button
                 android:id="@+id/registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:layout_below="@id/password"
+                android:layout_below="@id/controlPassword"
                 android:textSize="14sp"
                 android:text="@string/save"
                 android:textStyle="bold"

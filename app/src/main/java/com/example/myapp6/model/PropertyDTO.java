@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PropertyDTO {
 
-    private int propertyId;
     private  String propertyName;
     private  String propertyRoom;
     private float propertyPrice;

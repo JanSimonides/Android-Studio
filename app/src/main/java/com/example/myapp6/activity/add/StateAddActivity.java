@@ -14,6 +14,11 @@ import com.example.myapp6.JsonApi;
 import com.example.myapp6.R;
 import com.example.myapp6.model.entity.State;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,23 +54,30 @@ public class StateAddActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                State state = new State(charState.getText().charAt(0),description.getText().toString());
+                State state = new State(Character.toUpperCase(charState.getText().charAt(0)),description.getText().toString());
                 Call<Void> call = jsonApi.saveState(state);
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (!response.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Code" +response.code(),Toast.LENGTH_LONG).show();
+                            try {
+                                JSONObject responseObject = new JSONObject(response.errorBody().string());
+                                String message = responseObject.getString("message");
+                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
                             return;
                         }
                         Toast.makeText(getApplicationContext(), "State saved",Toast.LENGTH_LONG).show();
+                        finish();
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         Toast.makeText(getApplicationContext(), "State not saved: "+t,Toast.LENGTH_LONG).show();
                     }
                 });
-                finish();
+
             }
         });
 

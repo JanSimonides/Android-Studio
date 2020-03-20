@@ -44,7 +44,6 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
         detailsName = findViewById(R.id.detailsName);
         detailsRoom = findViewById(R.id.detailsRoom);
         detailsPrice = findViewById(R.id.detailsPrice);
